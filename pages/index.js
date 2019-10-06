@@ -14,6 +14,8 @@ function Home({ products, totalPages }) {
         <p>Our shop is opening soon, stay tune!</p>
       </div>
       <style global jsx>{`
+        @import url("https://fonts.googleapis.com/css?family=Dosis");
+
         #menu {
           display: none !important;
         }
@@ -66,7 +68,6 @@ function Home({ products, totalPages }) {
           font-size: 40px;
           word-spacing: 20px;
         }
-        @import url("https://fonts.googleapis.com/css?family=Dosis");
       `}</style>
     </div>
   );
