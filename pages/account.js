@@ -4,14 +4,15 @@ import AccountPermissions from "../components/Account/AccountPermissions";
 import { parseCookies } from "nookies";
 import baseUrl from "../utils/baseUrl";
 import axios from "axios";
+import ContainerLayout from "../components/_App/ContainerLayout";
 
 function Account({ user, orders }) {
   return (
-    <>
+    <ContainerLayout>
       <AccountHeader {...user} />
       <AccountOrders orders={orders} />
       {user.role === "root" && <AccountPermissions />}
-    </>
+    </ContainerLayout>
   );
 }
 

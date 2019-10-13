@@ -5,6 +5,7 @@ import axios from "axios";
 import catchErrors from "../utils/catchErrors";
 import baseUrl from "../utils/baseUrl";
 import { handleLogin } from "../utils/auth";
+import ContainerLayout from "../components/_App/ContainerLayout";
 
 const INITIAL_USER = {
   name: "",
@@ -46,7 +47,7 @@ function Signup() {
   }
 
   return (
-    <>
+    <ContainerLayout text>
       <Message
         attached
         icon="settings"
@@ -106,7 +107,7 @@ function Signup() {
         </Link>{" "}
         instead.
       </Message>
-    </>
+    </ContainerLayout>
   );
 }
 

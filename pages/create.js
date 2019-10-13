@@ -12,6 +12,7 @@ import {
 import axios from "axios";
 import baseUrl from "../utils/baseUrl";
 import catchErrors from "../utils/catchErrors";
+import ContainerLayout from "../components/_App/ContainerLayout";
 
 const INITIAL_PRODUCT = {
   name: "",
@@ -46,8 +47,8 @@ function CreateProduct() {
   async function handleImageUpload() {
     const data = new FormData();
     data.append("file", product.media);
-    data.append("upload_preset", "reactreserve");
-    data.append("cloud_name", "reedbargercodes");
+    data.append("upload_preset", "mrbanhmi-preset");
+    data.append("cloud_name", "banhaclongimagecloud");
     const response = await axios.post(process.env.CLOUDINARY_URL, data);
     const mediaUrl = response.data.url;
     return mediaUrl;
@@ -73,7 +74,7 @@ function CreateProduct() {
   }
 
   return (
-    <>
+    <ContainerLayout>
       <Header as="h2" block>
         <Icon name="add" color="orange" />
         Create New Product
@@ -139,7 +140,7 @@ function CreateProduct() {
           type="submit"
         />
       </Form>
-    </>
+    </ContainerLayout>
   );
 }
 

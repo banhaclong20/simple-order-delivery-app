@@ -2,13 +2,14 @@ import axios from "axios";
 import ProductSummary from "../components/Product/ProductSummary";
 import ProductAttributes from "../components/Product/ProductAttributes";
 import baseUrl from "../utils/baseUrl";
+import ContainerLayout from "../components/_App/ContainerLayout";
 
 function Product({ product, user }) {
   return (
-    <>
+    <ContainerLayout>
       <ProductSummary user={user} {...product} />
       <ProductAttributes user={user} {...product} />
-    </>
+    </ContainerLayout>
   );
 }
 

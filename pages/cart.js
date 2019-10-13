@@ -7,6 +7,7 @@ import axios from "axios";
 import cookie from "js-cookie";
 import baseUrl from "../utils/baseUrl";
 import catchErrors from "../utils/catchErrors";
+import ContainerLayout from "../components/_App/ContainerLayout";
 
 function Cart({ products, user }) {
   const [cartProducts, setCartProducts] = React.useState(products);
@@ -41,19 +42,21 @@ function Cart({ products, user }) {
   }
 
   return (
-    <Segment loading={loading}>
-      <CartItemList
-        handleRemoveFromCart={handleRemoveFromCart}
-        user={user}
-        products={cartProducts}
-        success={success}
-      />
-      <CartSummary
-        products={cartProducts}
-        handleCheckout={handleCheckout}
-        success={success}
-      />
-    </Segment>
+    <ContainerLayout>
+      <Segment loading={loading}>
+        <CartItemList
+          handleRemoveFromCart={handleRemoveFromCart}
+          user={user}
+          products={cartProducts}
+          success={success}
+        />
+        <CartSummary
+          products={cartProducts}
+          handleCheckout={handleCheckout}
+          success={success}
+        />
+      </Segment>
+    </ContainerLayout>
   );
 }
 

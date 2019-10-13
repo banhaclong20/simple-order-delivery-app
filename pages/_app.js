@@ -6,6 +6,9 @@ import baseUrl from "../utils/baseUrl";
 import axios from "axios";
 import Router from "next/router";
 
+import "semantic-ui-css/semantic.min.css";
+import "./main.css";
+
 class MyApp extends App {
   static async getInitialProps({ Component, ctx }) {
     const { token } = parseCookies(ctx);
