@@ -1,7 +1,17 @@
 import React from "react";
-import { Button, Form, Icon, Message, Segment } from "semantic-ui-react";
+import { connect } from "react-redux";
+import {
+  Button,
+  Form,
+  Message,
+  Segment,
+  Header,
+  Grid,
+  Image
+} from "semantic-ui-react";
 import Link from "next/link";
 import axios from "axios";
+import AuthActions from "../redux/actions/authActions";
 import catchErrors from "../utils/catchErrors";
 import baseUrl from "../utils/baseUrl";
 import { handleLogin } from "../utils/auth";
@@ -12,7 +22,7 @@ const INITIAL_USER = {
   password: ""
 };
 
-function Signup() {
+function SignIn(props) {
   const [user, setUser] = React.useState(INITIAL_USER);
   const [disabled, setDisabled] = React.useState(true);
   const [loading, setLoading] = React.useState(false);
@@ -29,6 +39,7 @@ function Signup() {
   }
 
   async function handleSubmit(event) {
+    const { reauthenticate } = props;
     event.preventDefault();
 
     try {
@@ -38,6 +49,7 @@ function Signup() {
       const payload = { ...user };
       const response = await axios.post(url, payload);
       handleLogin(response.data);
+      reauthenticate(response.data);
     } catch (error) {
       catchErrors(error, setError);
     } finally {
@@ -47,57 +59,79 @@ function Signup() {
 
   return (
     <ContainerLayout text>
-      <Message
-        attached
-        icon="privacy"
-        header="Welcome Back!"
-        content="Log in with email and password"
-        color="blue"
+      <Header
+        as="h2"
+        content="Sign In To Your Account"
+        subheader="Log in with email and password"
       />
       <Form error={Boolean(error)} loading={loading} onSubmit={handleSubmit}>
         <Message error header="Oops!" content={error} />
-        <Segment>
-          <Form.Input
-            fluid
-            icon="envelope"
-            iconPosition="left"
-            label="Email"
-            placeholder="Email"
-            name="email"
-            type="email"
-            value={user.email}
-            onChange={handleChange}
-          />
-          <Form.Input
-            fluid
-            icon="lock"
-            iconPosition="left"
-            label="Password"
-            placeholder="Password"
-            name="password"
-            type="password"
-            value={user.password}
-            onChange={handleChange}
-          />
-          <Button
-            disabled={disabled || loading}
-            icon="sign in"
-            type="submit"
-            color="orange"
-            content="Login"
-          />
+
+        <Segment vertical>
+          <Grid container stackable verticalAlign="top">
+            <Grid.Row className="container-text-content">
+              <Grid.Column floated="left" width={10}>
+                <Form.Input
+                  fluid
+                  icon="envelope"
+                  iconPosition="left"
+                  label="Email"
+                  placeholder="Email"
+                  name="email"
+                  type="email"
+                  value={user.email}
+                  onChange={handleChange}
+                />
+                <Form.Input
+                  fluid
+                  icon="lock"
+                  iconPosition="left"
+                  label="Password"
+                  placeholder="Password"
+                  name="password"
+                  type="password"
+                  value={user.password}
+                  onChange={handleChange}
+                />
+                <Button
+                  disabled={disabled || loading}
+                  icon="sign in"
+                  type="submit"
+                  color="orange"
+                  content="Login"
+                />
+
+                <Header
+                  as="h4"
+                  content="New user? "
+                  subheader={
+                    <Link href="/signup">
+                      <a>Sign up here</a>
+                    </Link>
+                  }
+                />
+              </Grid.Column>
+              <Grid.Column floated="left" width={6}>
+                <div>
+                  <Image
+                    src="../static/menu/vietnamese-sandwich-banh-mi.jpg"
+                    bordered
+                  />
+                </div>
+              </Grid.Column>
+            </Grid.Row>
+          </Grid>
         </Segment>
       </Form>
-      <Message attached="bottom" warning>
-        <Icon name="help" />
-        New user?{" "}
-        <Link href="/signup">
-          <a>Sign up here</a>
-        </Link>{" "}
-        instead.
-      </Message>
     </ContainerLayout>
   );
 }
 
-export default Signup;
+const mapDispatchToProps = {
+  reauthenticate: AuthActions.reauthenticate
+};
+
+export default connect(
+  state => state,
+  mapDispatchToProps
+)(SignIn);

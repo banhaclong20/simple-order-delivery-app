@@ -9,10 +9,10 @@ import isLength from "validator/lib/isLength";
 connectDb();
 
 export default async (req, res) => {
-  const { name, email, password } = req.body;
+  const { firstName, lastName, email, password, phone, zipCode } = req.body;
   try {
     // 1) Validate name / email / password
-    if (!isLength(name, { min: 3, max: 10 })) {
+    if (!isLength(firstName, { min: 3, max: 10 })) {
       return res.status(422).send("Name must be 3-10 characters long");
     } else if (!isLength(password, { min: 6 })) {
       return res.status(422).send("Password must be at least 6 characters");
@@ -28,9 +28,12 @@ export default async (req, res) => {
     const hash = await bcrypt.hash(password, 10);
     // 4) create user
     const newUser = await new User({
-      name,
+      firstName,
+      lastName,
       email,
-      password: hash
+      password: hash,
+      phone,
+      zipCode
     }).save();
     console.log({ newUser });
     // 5) create cart for new user

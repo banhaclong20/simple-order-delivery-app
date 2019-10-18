@@ -48,8 +48,8 @@ function Header({ user }) {
         <Segment.Group className="segment-menu">
           <Responsive as={Segment} minWidth={768} style={{ padding: "1em 0" }}>
             <Menu.Menu position="right">
-              <Link href="/home">
-                <Menu.Item header active={isActive("/home")}>
+              <Link href="/">
+                <Menu.Item header active={isActive("/")}>
                   Home
                 </Menu.Item>
               </Link>

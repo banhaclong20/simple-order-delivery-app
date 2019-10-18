@@ -4,7 +4,11 @@ const { String } = mongoose.Schema.Types;
 
 const UserSchema = new mongoose.Schema(
   {
-    name: {
+    firstName: {
+      type: String,
+      required: true
+    },
+    lastName: {
       type: String,
       required: true
     },
@@ -17,6 +21,14 @@ const UserSchema = new mongoose.Schema(
       type: String,
       required: true,
       select: false
+    },
+    phone: {
+      type: String,
+      required: true
+    },
+    zipCode: {
+      type: String,
+      required: true
     },
     role: {
       type: String,

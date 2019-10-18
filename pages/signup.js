@@ -1,5 +1,14 @@
 import React from "react";
-import { Button, Form, Icon, Message, Segment } from "semantic-ui-react";
+import {
+  Button,
+  Form,
+  Message,
+  Segment,
+  Header,
+  Grid,
+  Image,
+  Checkbox
+} from "semantic-ui-react";
 import Link from "next/link";
 import axios from "axios";
 import catchErrors from "../utils/catchErrors";
@@ -8,9 +17,13 @@ import { handleLogin } from "../utils/auth";
 import ContainerLayout from "../components/_App/ContainerLayout";
 
 const INITIAL_USER = {
-  name: "",
+  firstName: "",
+  lastName: "",
   email: "",
-  password: ""
+  password: "",
+  confirmPassword: "",
+  phone: "",
+  zipCode: ""
 };
 
 function Signup() {
@@ -48,65 +61,124 @@ function Signup() {
 
   return (
     <ContainerLayout text>
-      <Message
-        attached
-        icon="settings"
-        header="Get Started!"
-        content="Create a new account"
-        color="teal"
+      <Header
+        as="h2"
+        content="Create Your Account"
+        subheader="Your account information is used to login to the site."
       />
       <Form error={Boolean(error)} loading={loading} onSubmit={handleSubmit}>
         <Message error header="Oops!" content={error} />
-        <Segment>
-          <Form.Input
-            fluid
-            icon="user"
-            iconPosition="left"
-            label="Name"
-            placeholder="Name"
-            name="name"
-            value={user.name}
-            onChange={handleChange}
-          />
-          <Form.Input
-            fluid
-            icon="envelope"
-            iconPosition="left"
-            label="Email"
-            placeholder="Email"
-            name="email"
-            type="email"
-            value={user.email}
-            onChange={handleChange}
-          />
-          <Form.Input
-            fluid
-            icon="lock"
-            iconPosition="left"
-            label="Password"
-            placeholder="Password"
-            name="password"
-            type="password"
-            value={user.password}
-            onChange={handleChange}
-          />
-          <Button
-            disabled={disabled || loading}
-            icon="signup"
-            type="submit"
-            color="orange"
-            content="Signup"
-          />
+
+        <Segment vertical>
+          <Grid container stackable verticalAlign="top">
+            <Grid.Row className="container-text-content">
+              <Grid.Column floated="left" width={10}>
+                <Form.Input
+                  fluid
+                  icon="user"
+                  iconPosition="left"
+                  label="First Name"
+                  placeholder="First Name"
+                  name="firstName"
+                  value={user.firstName}
+                  onChange={handleChange}
+                />
+                <Form.Input
+                  fluid
+                  icon="user"
+                  iconPosition="left"
+                  label="Last Name"
+                  placeholder="Last Name"
+                  name="lastName"
+                  value={user.lastName}
+                  onChange={handleChange}
+                />
+                <Form.Input
+                  fluid
+                  icon="envelope"
+                  iconPosition="left"
+                  label="Email"
+                  placeholder="Email"
+                  name="email"
+                  type="email"
+                  value={user.email}
+                  onChange={handleChange}
+                />
+                <Form.Input
+                  fluid
+                  icon="lock"
+                  iconPosition="left"
+                  label="Password"
+                  placeholder="Password"
+                  name="password"
+                  type="password"
+                  value={user.password}
+                  onChange={handleChange}
+                />
+                <Form.Input
+                  fluid
+                  icon="lock"
+                  iconPosition="left"
+                  label="Confirm Password"
+                  placeholder="Confirm Password"
+                  name="confirmPassword"
+                  type="password"
+                  value={user.confirmPassword}
+                  onChange={handleChange}
+                />
+                <Form.Input
+                  fluid
+                  icon="phone"
+                  iconPosition="left"
+                  label="Phone"
+                  placeholder="(XXX)-XXX-XXXX"
+                  name="phone"
+                  value={user.phone}
+                  onChange={handleChange}
+                />
+                <Form.Input
+                  fluid
+                  icon="map"
+                  iconPosition="left"
+                  label="Zip Code"
+                  placeholder="Zip Code"
+                  name="zipCode"
+                  value={user.zipCode}
+                  onChange={handleChange}
+                />
+                <div>
+                  <Checkbox label="Yes, I agree to the Terms of use (required)" />
+                </div>
+                <div>
+                  <Checkbox label="Yes, I agree to the Privacy Policy (required)" />
+                </div>
+                <br />
+                <Button
+                  disabled={disabled || loading}
+                  icon="signup"
+                  type="submit"
+                  color="orange"
+                  content="Signup"
+                />
+
+                <Header
+                  as="h4"
+                  content=" Existing user? "
+                  subheader={
+                    <Link href="/login">
+                      <a>Log in here</a>
+                    </Link>
+                  }
+                />
+              </Grid.Column>
+              <Grid.Column floated="left" width={6}>
+                <Image src="../static/menu/Banh-Mi-Sandwich.jpg" bordered />
+                <Image src="../static/menu/banh-mi.jpg" bordered />
+              </Grid.Column>
+            </Grid.Row>
+          </Grid>
         </Segment>
       </Form>
-      <Message attached="bottom" warning>
-        <Icon name="help" />
-        Existing user?{" "}
-        <Link href="/login">
-          <a>Log in here</a>
-        </Link>{" "}
-        instead.
-      </Message>
     </ContainerLayout>
   );
 }

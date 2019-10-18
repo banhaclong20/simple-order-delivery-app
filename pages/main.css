@@ -22,9 +22,31 @@ h2.ui.header {
   color: #4d4d4d;
 }
 
+h2.ui.header .sub.header {
+  font-size: 1rem;
+}
+
 .grid-container-item {
   background: #f1f1f1;
   padding: 1em !important;
   border: 1px solid #f7f7f7;
   margin-top: 2em !important;
+}
+
+.container-text-content {
+  padding: 1.5em 1em !important;
+  margin-top: 1em !important;
+  border-radius: 5px;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 2px 24px 0px
+}
+
+/* Menu */ 
+
+.ui.secondary.menu .item:hover,
+.ui.secondary.menu .item:focus,
+.ui.secondary.menu .item.active {
+  background: none !important;
+  color: green !important;
+  font-size: 1rem !important;
+  font-weight: bold;
 }
