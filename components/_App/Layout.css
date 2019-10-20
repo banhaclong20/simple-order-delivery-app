@@ -7,3 +7,46 @@
   border: none !important;
   box-shadow: none !important;
 }
+
+/* Hambuger Menu */
+
+.mobile-menu {
+  display: block;
+}
+
+.desktop-menu {
+  display: none;
+}
+
+@media only screen and (min-width: 768px) {
+  .desktop-menu {
+    display: block;
+  }
+
+  .mobile-menu {
+    display: none;
+  }
+}
+
+.ui.secondary.menu .item {
+  font-size: 1rem !important;
+  font-weight: bold;
+}
+
+.ui.menu .item > i.icon:before:hover  {
+  font-size: 1.5em;
+}
+
+.ui.vertical.inverted.menu .menu .item {
+  border-bottom: 1px solid #404040 !important;
+  line-height: 40px !important;
+}
+
+.ui.secondary.menu .item:hover,
+.ui.secondary.menu .item:focus,
+.ui.secondary.menu .item.active {
+  background: none !important;
+  color: green !important;
+  font-size: 1rem !important;
+  font-weight: bold;
+}

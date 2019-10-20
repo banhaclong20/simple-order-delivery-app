@@ -10,7 +10,6 @@ function Layout({ children, user }) {
         <HeadContent />
         {/* Stylesheets */}
         <link rel="stylesheet" type="text/css" href="/static/styles.css" />
-        <link rel="stylesheet" type="text/css" href="/static/nprogress.css" />
         <link
           rel="stylesheet"
           href="//cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.2/semantic.min.css"
@@ -23,7 +22,7 @@ function Layout({ children, user }) {
           href="https://fonts.googleapis.com/css?family=Montserrat:400,400i,500,500i,600,600i,700,800&display=swap"
           rel="stylesheet"
         />
-        <title>ReactReserve</title>
+        <title>Mr Banh Mi Shop</title>
       </Head>
       <Header user={user} />
       <div style={{ minHeight: "70vh" }}>{children}</div>

@@ -10,6 +10,7 @@ import {
   Segment,
   Card
 } from "semantic-ui-react";
+
 import Hero from "../components/HeroBanner";
 
 const HomepageLayout = () => (

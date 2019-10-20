@@ -1,27 +1,15 @@
-import {
-  Menu,
-  Container,
-  Button,
-  Responsive,
-  Segment
-} from "semantic-ui-react";
+import { Menu, Container, Button, Segment } from "semantic-ui-react";
 import Link from "next/link";
-import Router, { useRouter } from "next/router";
-import NProgress from "nprogress";
+import { useRouter } from "next/router";
 import { handleLogout } from "../../utils/auth";
 import MobileContainer from "./HamburgerMenu";
 
 import "./Layout.css";
 
-Router.onRouteChangeStart = () => NProgress.start();
-Router.onRouteChangeComplete = () => NProgress.done();
-Router.onRouteChangeError = () => NProgress.done();
-
 function Header({ user }) {
   const router = useRouter();
   const isRoot = user && user.role === "root";
   const isAdmin = user && user.role === "admin";
-  const isRootOrAdmin = isRoot || isAdmin;
 
   function isActive(route) {
     return route === router.pathname;
@@ -46,7 +34,7 @@ function Header({ user }) {
           </Menu.Item>
         </Link>
         <Segment.Group className="segment-menu">
-          <Responsive as={Segment} minWidth={768} style={{ padding: "1em 0" }}>
+          <div style={{ padding: "1em 0" }} className="desktop-menu">
             <Menu.Menu position="right">
               <Link href="/">
                 <Menu.Item header active={isActive("/")}>
@@ -66,27 +54,19 @@ function Header({ user }) {
                 </Menu.Item>
               </Link>
 
-              {isRootOrAdmin && (
-                <Link href="/create">
-                  <Menu.Item header active={isActive("/create")}>
-                    Create
-                  </Menu.Item>
-                </Link>
-              )}
-
               {user ? (
                 <>
-                  <Link href="/account">
-                    <Menu.Item header active={isActive("/account")}>
-                      Account
-                    </Menu.Item>
-                  </Link>
-
-                  <Menu.Item header>
-                    <Button positive onClick={handleLogout}>
-                      Logout
-                    </Button>
+                  <Menu.Item
+                    header
+                    onClick={handleLogout}
+                    style={{ marginRight: 15 }}
+                  >
+                    Logout
                   </Menu.Item>
+
+                  <Link href="/account">
+                    <Button positive>Account</Button>
+                  </Link>
                 </>
               ) : (
                 <>
@@ -104,10 +84,10 @@ function Header({ user }) {
                 </>
               )}
             </Menu.Menu>
-          </Responsive>
-          <Responsive as={Segment} maxWidth={768} style={{ padding: 0 }}>
-            <MobileContainer />
-          </Responsive>
+          </div>
+          <div className="mobile-menu" style={{ padding: 0 }}>
+            <MobileContainer user={user} />
+          </div>
         </Segment.Group>
       </Container>
     </Menu>

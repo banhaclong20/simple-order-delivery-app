@@ -1,71 +1,104 @@
 import PropTypes from "prop-types";
-import React, { Component } from "react";
+import React from "react";
 import Link from "next/link";
-import {
-  Button,
-  Container,
-  Icon,
-  Menu,
-  Responsive,
-  Segment,
-  Sidebar
-} from "semantic-ui-react";
+import { useRouter } from "next/router";
+import { Button, Icon, Menu, Segment, Sidebar } from "semantic-ui-react";
+import MenuItem from "../Layout/Menu/MenuItem";
+import { handleLogout } from "../../utils/auth";
 
-class MobileContainer extends Component {
-  state = {};
+function MobileContainer({ user, children }) {
+  const [sidebarOpened, setSidebarOpen] = React.useState(false);
+  const router = useRouter();
 
-  handleSidebarHide = () => this.setState({ sidebarOpened: false });
-
-  handleToggle = () => this.setState({ sidebarOpened: true });
-
-  render() {
-    const { children } = this.props;
-    const { sidebarOpened } = this.state;
-
-    return (
-      <>
-        <Sidebar
-          as={Menu}
-          animation="push"
-          inverted
-          onHide={this.handleSidebarHide}
-          vertical
-          visible={sidebarOpened}
-        >
-          <Menu.Item as="a" header>
-            Home
-          </Menu.Item>
-          <Menu.Item as="a" header>
-            Work
-          </Menu.Item>
-          <Menu.Item as="a" header>
-            Company
-          </Menu.Item>
-          <Menu.Item as="a" header>
-            Careers
-          </Menu.Item>
-          <Menu.Item as="a" header>
-            Log in
-          </Menu.Item>
-          <Menu.Item as="a" header>
-            Sign Up
-          </Menu.Item>
-        </Sidebar>
-
-        <Sidebar.Pusher dimmed={sidebarOpened}>
-          <Segment textAlign="center" vertical>
-            <Menu secondary size="large">
-              <Menu.Item onClick={this.handleToggle}>
-                <Icon name="sidebar" size="large" />
-              </Menu.Item>
-            </Menu>
-          </Segment>
-
-          {children}
-        </Sidebar.Pusher>
-      </>
-    );
+  function isActive(route) {
+    return route === router.pathname;
   }
+
+  function handleSidebarHide() {
+    setSidebarOpen(false);
+  }
+
+  function handleToggle() {
+    setSidebarOpen(true);
+  }
+
+  return (
+    <>
+      <Sidebar
+        as={Menu}
+        animation="overlay"
+        inverted
+        onHide={handleSidebarHide}
+        vertical
+        visible={sidebarOpened}
+        onHide={() => setSidebarOpen(false)}
+        className="hamburger-menu"
+      >
+        <Menu.Menu>
+          <MenuItem handleToggle={handleSidebarHide} />
+          {user ? (
+            <>
+              <Link href="/account">
+                <Menu.Item
+                  header
+                  active={isActive("/account")}
+                  onClick={handleSidebarHide}
+                >
+                  Account
+                </Menu.Item>
+              </Link>
+
+              <Menu.Item
+                header
+                onClick={() => {
+                  handleLogout();
+                  handleSidebarHide();
+                }}
+              >
+                <Button positive>Logout</Button>
+              </Menu.Item>
+            </>
+          ) : (
+            <>
+              <Link href="/login">
+                <Menu.Item header onClick={handleSidebarHide}>
+                  Login
+                </Menu.Item>
+              </Link>
+
+              <Link href="/signup">
+                <Menu.Item
+                  header
+                  active={isActive("/signup")}
+                  onClick={handleSidebarHide}
+                >
+                  <Button inverted color="green">
+                    Join Now
+                  </Button>
+                </Menu.Item>
+              </Link>
+            </>
+          )}
+        </Menu.Menu>
+      </Sidebar>
+
+      <Sidebar.Pusher>
+        <Segment textAlign="center" vertical>
+          {sidebarOpened ? (
+            <Menu.Item onClick={() => setSidebarOpen(false)}>
+              <Icon name="window close outline" size="large" />
+            </Menu.Item>
+          ) : (
+            <Menu.Item onClick={handleToggle}>
+              <Icon name="sidebar" size="large" />
+            </Menu.Item>
+          )}
+        </Segment>
+
+        {children}
+      </Sidebar.Pusher>
+    </>
+  );
 }
 
 MobileContainer.propTypes = {
