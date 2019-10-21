@@ -9,7 +9,7 @@ module.exports = withCSS({
       "cloudinary://946184783831129:D3Qu8GBic2D8HZvyvLeoZUqnKeQ@banhaclongimagecloud",
     STRIPE_SECRET_KEY: "sk_test_jMyO1QPcSAtUadk3JAPMlcRB00TysDpYxa"
   },
-  target: "serverless",
+  server: "serverless",
   webpack(config) {
     config.module.rules.push({
       test: /\.(png|jpg|svg|eot|otf|ttf|woff|woff2)$/,
