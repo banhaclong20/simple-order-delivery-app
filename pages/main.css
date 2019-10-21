@@ -40,3 +40,31 @@ h2.ui.header .sub.header {
   box-shadow: rgba(0, 0, 0, 0.1) 0px 2px 24px 0px
 }
 
+/* Order Now */
+
+.start-order-card {
+  transition: all 0.3s ease-in-out !important;
+}
+
+.start-order-card .image {
+  padding: 1em !important;
+  text-align: center !important;
+}
+
+.start-order-card .image,
+.start-order-card .content  {
+  display: flex !important;
+  justify-content: center !important;
+}
+
+.start-order-card .content .header {
+  transition: all 0.3s ease-in-out !important;
+}
+
+.start-order-card:hover .content .header {
+  color: #21ba45 !important;
+}
+
+.carry-out-card .image img {
+  width: 140px !important;
+}

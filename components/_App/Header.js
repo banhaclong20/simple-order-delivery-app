@@ -1,4 +1,11 @@
-import { Menu, Container, Button, Segment } from "semantic-ui-react";
+import {
+  Menu,
+  Container,
+  Button,
+  Segment,
+  Icon,
+  Label
+} from "semantic-ui-react";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { handleLogout } from "../../utils/auth";
@@ -48,12 +55,6 @@ function Header({ user }) {
                 </Menu.Item>
               </Link>
 
-              <Link href="/cart">
-                <Menu.Item header active={isActive("/cart")}>
-                  Cart
-                </Menu.Item>
-              </Link>
-
               {user ? (
                 <>
                   <Menu.Item
@@ -83,6 +84,15 @@ function Header({ user }) {
                   </Link>
                 </>
               )}
+
+              <Link href="/cart">
+                <Menu.Item header active={isActive("/cart")}>
+                  <Icon name="cart" />
+                  <Label color="green" floating>
+                    0
+                  </Label>
+                </Menu.Item>
+              </Link>
             </Menu.Menu>
           </div>
           <div className="mobile-menu" style={{ padding: 0 }}>

@@ -62,12 +62,14 @@ const HomepageLayout = () => (
           </Grid.Row>
           <Grid.Row>
             <Grid.Column textAlign="center">
-              <Button animated size="huge" inverted color="green">
-                <Button.Content visible>Order Now</Button.Content>
-                <Button.Content hidden>
-                  <Icon name="arrow right" />
-                </Button.Content>
-              </Button>
+              <Link href="start-order">
+                <Button animated size="huge" inverted color="green">
+                  <Button.Content visible>Order Now</Button.Content>
+                  <Button.Content hidden>
+                    <Icon name="arrow right" />
+                  </Button.Content>
+                </Button>
+              </Link>
             </Grid.Column>
           </Grid.Row>
         </Grid>

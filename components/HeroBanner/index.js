@@ -1,4 +1,5 @@
 import React from "react";
+import Link from "next/link";
 import { Button, Header, Icon, Segment } from "semantic-ui-react";
 import "./style.css";
 
@@ -23,10 +24,12 @@ export default ({ size = "500px" }) => (
         style={{ margin: "0 0 2em", padding: 0 }}
       />
       <br />
-      <Button size="medium" color="red">
-        Order Online (coming soon)
-        <Icon name="right arrow" />
-      </Button>
+      <Link href="/start-order">
+        <Button size="medium" color="red">
+          Order Online (coming soon)
+          <Icon name="right arrow" />
+        </Button>
+      </Link>
     </div>
   </Segment>
 );

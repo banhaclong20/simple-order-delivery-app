@@ -1,5 +1,5 @@
 import React from "react";
-import { Button, Header, Icon, Segment } from "semantic-ui-react";
+import { Header, Segment } from "semantic-ui-react";
 import "./style.css";
 
 export default ({ size, content }) => (
@@ -10,19 +10,16 @@ export default ({ size, content }) => (
       minHeight: size,
       padding: "1em 0em",
       background:
-        "url(../../../static/assets/hero-banner.jpg) no-repeat center center"
+        "url(../../../static/assets/mrbanhmi-menu-background.jpg) no-repeat center bottom"
     }}
     className="hero"
     vertical
   >
     {content && (
-      <div className="hero-content">
-        <Header as="h1" content="Welcome to MrBanhMi" />
+      <div className="small-hero-content">
+        <Header as="h1" content="Start Order" />
         <div className="border"></div>
-        <Button size="medium" color="red">
-          Order Online (coming soon)
-          <Icon name="right arrow" />
-        </Button>
+        <Header as="h2" content="Please choose your options to get started!" />
       </div>
     )}
   </Segment>
