@@ -15,8 +15,7 @@ import "./Layout.css";
 
 function Header({ user }) {
   const router = useRouter();
-  const isRoot = user && user.role === "root";
-  const isAdmin = user && user.role === "admin";
+  let orderCount = 0;
 
   function isActive(route) {
     return route === router.pathname;
@@ -88,9 +87,11 @@ function Header({ user }) {
               <Link href="/cart">
                 <Menu.Item header active={isActive("/cart")}>
                   <Icon name="cart" />
-                  <Label color="green" floating>
-                    0
-                  </Label>
+                  {orderCount === 0 ? null : (
+                    <Label color="green" floating>
+                      0
+                    </Label>
+                  )}
                 </Menu.Item>
               </Link>
             </Menu.Menu>
