@@ -1,9 +1,16 @@
 import ContainerLayout from "../components/_App/ContainerLayout";
-import { Grid, Image, Card } from "semantic-ui-react";
+import { Grid, Card } from "semantic-ui-react";
+import { bannerContent } from "../utils/staticContent";
 
 function StartOrder() {
   return (
-    <ContainerLayout banner content size="150px" text>
+    <ContainerLayout
+      banner
+      content
+      bannerContent={bannerContent.startOrder}
+      size="150px"
+      text
+    >
       <Grid stackable>
         <Grid.Row columns={2}>
           <Grid.Column>

@@ -29,8 +29,7 @@ const HomepageLayout = () => (
               </Header>
               <p style={{ fontSize: "1.33em" }}>
                 We'll have your order ready on the Rapid Pick-Up shelf at the
-                time you choose. No lines, no wait. Ordering for 10 or more?
-                Click "Order Catering" in the box below.
+                time you choose. No lines, no wait.
               </p>
             </Grid.Column>
             <Grid.Column floated="right" width={6}>
@@ -46,9 +45,8 @@ const HomepageLayout = () => (
                 Delivery
               </Header>
               <p style={{ fontSize: "1.33em" }}>
-                We'll deliver your meal to you at your home or business.
-                Ordering for 10 or more? Click "Order Catering" in the box
-                below.
+                We'll deliver your Vietnamese sandwiches to you at your home or
+                business. Ordering for 10 or more? Click here for more details.
               </p>
             </Grid.Column>
             <Grid.Column floated="right" width={6}>

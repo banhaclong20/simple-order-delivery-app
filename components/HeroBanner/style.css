@@ -23,7 +23,7 @@
 
 .hero .small-hero-content h1,
 .hero .small-hero-content h2 {
-  color: #FFF;
+  color: #FFF !important;
 } 
 
 .hero .small-hero-content .border {
