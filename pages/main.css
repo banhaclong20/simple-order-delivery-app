@@ -67,4 +67,5 @@ h2.ui.header .sub.header {
 
 .carry-out-card .image img {
   width: 140px !important;
+  max-height: 140px !important;
 }

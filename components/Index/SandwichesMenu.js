@@ -22,7 +22,7 @@ function SandwichesMenu({ sandwiches }) {
       <Card.Group stackable itemsPerRow="2">
         {sandwiches.map(product => {
           return (
-            <Card style={{ borderRadius: 0 }}>
+            <Card style={{ borderRadius: 0 }} key={product.sku}>
               <Card.Content className="menu-card-content">
                 <div className="menu-card-content-info">
                   <Card.Header>

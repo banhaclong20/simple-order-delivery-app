@@ -13,7 +13,7 @@ function SmoothiesMenu({ drinks }) {
       <Card.Group stackable itemsPerRow="2">
         {drinks.map(drink => {
           return (
-            <Card style={{ borderRadius: 0 }}>
+            <Card style={{ borderRadius: 0 }} key={drink.sku}>
               <Card.Content className="menu-card-content">
                 <div className="menu-card-content-info">
                   <Card.Header>{drink.name}</Card.Header>
