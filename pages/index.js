@@ -91,21 +91,21 @@ const HomepageLayout = () => (
                   ui={false}
                 />
                 <Card.Content>
-                  <Card.Header>Deli Special Banh Mi</Card.Header>
+                  <Card.Header>Combination / Đặc Biệt</Card.Header>
 
                   <Card.Description>
-                    French ham and pork belly topped with cucumbers, jalapenos,
-                    pickled carrots.
+                    Combination sandwich is made with various Vietnamese cold
+                    cuts...
                   </Card.Description>
                 </Card.Content>
-                <Card.Content>$7.50</Card.Content>
+                <Card.Content>$4.25</Card.Content>
               </Card>
             </Grid.Column>
             <Grid.Column>
               <Card style={{ width: "100%" }}>
                 <Image src="../static/menu/banhmi.jpg" wrapped ui={false} />
                 <Card.Content>
-                  <Card.Header>Grilled Pork Banh Mi</Card.Header>
+                  <Card.Header>Grilled Pork / Thịt nướng</Card.Header>
 
                   <Card.Description>
                     Grilled pork topped with cucumbers, jalapenos, pickled
@@ -123,7 +123,7 @@ const HomepageLayout = () => (
                   ui={false}
                 />
                 <Card.Content>
-                  <Card.Header>Roast Chicken Banh Mi</Card.Header>
+                  <Card.Header>Vietnamese Pork Roll</Card.Header>
 
                   <Card.Description>
                     Glazed chicken breast topped with cucumbers, jalapenos,

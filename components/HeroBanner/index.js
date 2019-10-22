@@ -16,7 +16,7 @@ export default ({ size = "500px" }) => (
     vertical
   >
     <div className="hero-content">
-      <Header as="h1" content="Welcome to MrBanhMi" />
+      <Header as="h1" content="Welcome to Mr. Banh Mi" />
       <div className="border"></div>
       <Header
         as="h2"

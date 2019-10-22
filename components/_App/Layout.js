@@ -22,7 +22,9 @@ function Layout({ children, user }) {
           href="https://fonts.googleapis.com/css?family=Montserrat:400,400i,500,500i,600,600i,700,800&display=swap"
           rel="stylesheet"
         />
-        <title>Mr Banh Mi Shop</title>
+        <title>
+          Mr. Banh Mi - Order Delivery or CarryOut Vietnamese Sandwiches
+        </title>
       </Head>
       <Header user={user} />
       <div style={{ minHeight: "70vh" }}>{children}</div>
