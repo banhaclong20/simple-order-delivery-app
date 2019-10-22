@@ -40,7 +40,12 @@ async function handleGetRequest(req, res) {
 }
 
 async function handlePutRequest(req, res) {
-  const { _id, role } = req.body;
-  await User.findOneAndUpdate({ _id }, { role });
-  res.status(203).send("User updated");
+  try {
+    const { _id, role } = req.body;
+    await User.findOneAndUpdate({ _id }, { role });
+    res.status(203).send("User updated");
+  } catch (err) {
+    console.error(err);
+    res.status(500).send("API is failed on Updated User");
+  }
 }

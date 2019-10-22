@@ -25,12 +25,16 @@ Home.getInitialProps = async ctx => {
   const menu_url = `${baseUrl}/api/products`;
   const drink_url = `${baseUrl}/api/drinks`;
 
-  const [{ data: menus }, { data: drinks }] = await Promise.all([
-    axios.get(menu_url),
-    axios.get(drink_url)
-  ]);
+  try {
+    const [{ data: menus }, { data: drinks }] = await Promise.all([
+      axios.get(menu_url),
+      axios.get(drink_url)
+    ]);
 
-  return { menus, drinks };
+    return { menus, drinks };
+  } catch (e) {
+    console.error(`try/catch(${e})`);
+  }
 };
 
 export default Home;

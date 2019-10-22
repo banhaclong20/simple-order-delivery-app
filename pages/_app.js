@@ -1,6 +1,8 @@
 import App from "next/app";
 import { Provider } from "react-redux";
 import withRedux from "next-redux-wrapper";
+import { persistStore } from "redux-persist";
+import { PersistGate } from "redux-persist/integration/react";
 import axios from "axios";
 import Router from "next/router";
 import { parseCookies, destroyCookie } from "nookies";
@@ -37,7 +39,6 @@ export default withRedux(initStore, { debug: true })(
           const user = response.data;
           const isRoot = user.role === "root";
           const isAdmin = user.role === "admin";
-          // if authenticated, but not of role 'admin' or 'root', redirect from '/create' page
           const isNotPermitted =
             !(isRoot || isAdmin) && ctx.pathname === "/create";
           if (isNotPermitted) {
@@ -56,6 +57,11 @@ export default withRedux(initStore, { debug: true })(
       return { pageProps };
     }
 
+    constructor(props) {
+      super(props);
+      this.persistor = persistStore(props.store);
+    }
+
     componentDidMount() {
       window.addEventListener("storage", this.syncLogout);
     }
@@ -69,11 +75,19 @@ export default withRedux(initStore, { debug: true })(
 
     render() {
       const { Component, pageProps, store } = this.props;
+
+      // console.log("pageProps", pageProps);
+
       return (
         <Provider store={store}>
-          <Layout {...pageProps}>
-            <Component {...pageProps} />
-          </Layout>
+          <PersistGate
+            loading={<Component {...pageProps} />}
+            persistor={this.persistor}
+          >
+            <Layout {...pageProps}>
+              <Component {...pageProps} />
+            </Layout>
+          </PersistGate>
         </Provider>
       );
     }
