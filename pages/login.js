@@ -114,7 +114,7 @@ function SignIn(props) {
               <Grid.Column floated="left" width={6}>
                 <div>
                   <Image
-                    src="../static/menu/vietnamese-sandwich-banh-mi.jpg"
+                    src="../static/assets/vietnamese-sandwich-banh-mi.jpg"
                     bordered
                   />
                 </div>

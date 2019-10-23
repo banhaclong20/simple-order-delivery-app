@@ -69,8 +69,6 @@ export default withRedux(initStore, { debug: true })(
     render() {
       const { Component, pageProps, store } = this.props;
 
-      // console.log("pageProps", pageProps);
-
       return (
         <Provider store={store}>
           <Layout {...pageProps}>

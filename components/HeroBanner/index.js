@@ -10,7 +10,8 @@ export default ({ size = "500px" }) => (
     style={{
       minHeight: size,
       padding: "1em 0em",
-      background: "url(../../../static/banhmi.jpeg) no-repeat center center"
+      background:
+        "url(../../../static/assets/hero-vn-sandwich-bg.jpeg) no-repeat center center"
     }}
     className="hero"
     vertical
