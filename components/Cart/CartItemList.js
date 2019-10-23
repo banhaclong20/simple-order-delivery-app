@@ -56,16 +56,12 @@ function CartItemList({ products, user, handleRemoveFromCart, success }) {
         </Header>
         <div>
           {user ? (
-            <Button
-              inverted
-              color="green"
-              onClick={() => router.push("/start-order")}
-            >
-              Start Order
+            <Button secondary onClick={() => router.push("/menu")}>
+              View Menu
             </Button>
           ) : (
-            <Button inverted color="green" onClick={() => router.push("/menu")}>
-              View Menu
+            <Button primary onClick={() => router.push("/login")}>
+              Login to Add Products
             </Button>
           )}
         </div>
