@@ -1,7 +1,6 @@
 import App from "next/app";
 import { Provider } from "react-redux";
 import withRedux from "next-redux-wrapper";
-import { persistStore } from "redux-persist";
 import { PersistGate } from "redux-persist/integration/react";
 import axios from "axios";
 import Router from "next/router";
@@ -57,11 +56,6 @@ export default withRedux(initStore, { debug: true })(
       return { pageProps };
     }
 
-    constructor(props) {
-      super(props);
-      this.persistor = persistStore(props.store);
-    }
-
     componentDidMount() {
       window.addEventListener("storage", this.syncLogout);
     }
@@ -80,10 +74,7 @@ export default withRedux(initStore, { debug: true })(
 
       return (
         <Provider store={store}>
-          <PersistGate
-            loading={<Component {...pageProps} />}
-            persistor={this.persistor}
-          >
+          <PersistGate persistor={store.__PERSISTOR} loading={null}>
             <Layout {...pageProps}>
               <Component {...pageProps} />
             </Layout>
