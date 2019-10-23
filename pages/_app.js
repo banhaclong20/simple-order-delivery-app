@@ -1,7 +1,6 @@
 import App from "next/app";
 import { Provider } from "react-redux";
 import withRedux from "next-redux-wrapper";
-import { PersistGate } from "redux-persist/integration/react";
 import axios from "axios";
 import Router from "next/router";
 import { parseCookies, destroyCookie } from "nookies";
@@ -74,11 +73,9 @@ export default withRedux(initStore, { debug: true })(
 
       return (
         <Provider store={store}>
-          <PersistGate persistor={store.__PERSISTOR} loading={null}>
-            <Layout {...pageProps}>
-              <Component {...pageProps} />
-            </Layout>
-          </PersistGate>
+          <Layout {...pageProps}>
+            <Component {...pageProps} />
+          </Layout>
         </Provider>
       );
     }
