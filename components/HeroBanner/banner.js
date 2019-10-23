@@ -2,7 +2,7 @@ import React from "react";
 import { Header, Segment } from "semantic-ui-react";
 import "./style.css";
 
-export default ({ size, content, bannerContent }) => (
+export default ({ size, content, bannerContent, inverted }) => (
   <Segment
     inverted
     textAlign="center"
@@ -19,7 +19,11 @@ export default ({ size, content, bannerContent }) => (
     vertical
   >
     {content && (
-      <div className="small-hero-content">
+      <div
+        className={`${
+          inverted ? "inverted-small-hero-content" : "small-hero-content"
+        }`}
+      >
         <Header as="h1" content={bannerContent.header} />
         <div className="border"></div>
         <Header as="h2" content={bannerContent.description} />

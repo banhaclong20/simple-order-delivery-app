@@ -31,6 +31,10 @@
   width: 20%;
 }
 
+.hero .inverted-small-hero-content .border {
+  background: #4d4d4d;
+}
+
 .hero .border {
   height: 2px;
   background: #989898;

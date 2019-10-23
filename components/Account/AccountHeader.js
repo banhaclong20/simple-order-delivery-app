@@ -3,20 +3,14 @@ import formatDate from "../../utils/formatDate";
 
 function AccountHeader({ role, email, name, createdAt }) {
   return (
-    <Segment secondary inverted color="violet">
-      <Label
-        color="teal"
-        size="large"
-        ribbon
-        icon="privacy"
-        style={{ textTransform: "capitalize" }}
-        content={role}
-      />
-      <Header inverted textAlign="center" as="h1" icon>
+    <Segment placeholder>
+      <Header textAlign="center" as="h4" icon>
         <Icon name="user" />
         {name}
         <Header.Subheader>{email}</Header.Subheader>
         <Header.Subheader>Joined {formatDate(createdAt)}</Header.Subheader>
+        <br />
+        <Label style={{ textTransform: "capitalize" }} content={role} />
       </Header>
     </Segment>
   );

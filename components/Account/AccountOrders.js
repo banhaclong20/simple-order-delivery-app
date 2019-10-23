@@ -64,13 +64,13 @@ function AccountOrders({ orders }) {
         Order History
       </Header>
       {orders.length === 0 ? (
-        <Segment inverted tertiary color="grey" textAlign="center">
+        <Segment placeholder textAlign="center">
           <Header icon>
             <Icon name="copy outline" />
             No past orders.
           </Header>
           <div>
-            <Button onClick={() => router.push("/")} color="orange">
+            <Button onClick={() => router.push("/")} secondary>
               View Products
             </Button>
           </div>

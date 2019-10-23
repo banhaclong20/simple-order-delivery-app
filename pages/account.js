@@ -5,10 +5,17 @@ import { parseCookies } from "nookies";
 import baseUrl from "../utils/baseUrl";
 import axios from "axios";
 import ContainerLayout from "../components/_App/ContainerLayout";
+import { bannerContent } from "../utils/staticContent";
 
 function Account({ user, orders }) {
   return (
-    <ContainerLayout>
+    <ContainerLayout
+      banner
+      content
+      bannerContent={bannerContent.account}
+      inverted
+      size="180px"
+    >
       <AccountHeader {...user} />
       <AccountOrders orders={orders} />
       {user.role === "root" && <AccountPermissions />}

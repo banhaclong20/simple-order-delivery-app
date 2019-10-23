@@ -65,10 +65,15 @@ Cart.getInitialProps = async ctx => {
   if (!token) {
     return { products: [] };
   }
-  const url = `${baseUrl}/api/cart`;
-  const payload = { headers: { Authorization: token } };
-  const response = await axios.get(url, payload);
-  return { products: response.data };
+
+  try {
+    const url = `${baseUrl}/api/cart`;
+    const payload = { headers: { Authorization: token } };
+    const response = await axios.get(url, payload);
+    return { products: response.data };
+  } catch (error) {
+    console.error(error);
+  }
 };
 
 export default Cart;

@@ -1,6 +1,6 @@
 import React from "react";
 import StripeCheckout from "react-stripe-checkout";
-import { Button, Segment, Divider } from "semantic-ui-react";
+import { Button, Grid } from "semantic-ui-react";
 import calculateCartTotal from "../../utils/calculateCartTotal";
 
 function CartSummary({ products, handleCheckout, success }) {
@@ -15,33 +15,40 @@ function CartSummary({ products, handleCheckout, success }) {
     setCartEmpty(products.length === 0);
   }, [products]);
 
+  if (isCartEmpty) {
+    return null;
+  }
+
   return (
-    <>
-      <Divider />
-      <Segment clearing size="large">
-        <strong>Sub total:</strong> ${cartAmount}
-        <StripeCheckout
-          name="React Reserve"
-          amount={stripeAmount}
-          image={products.length > 0 ? products[0].product.mediaUrl : ""}
-          currency="USD"
-          shippingAddress={true}
-          billingAddress={true}
-          zipCode={true}
-          stripeKey="pk_test_t7RpkuOEdeYcNPrzs362Xe6Y00MxwtXekY"
-          token={handleCheckout}
-          triggerEvent="onClick"
-        >
-          <Button
-            icon="cart"
-            disabled={isCartEmpty || success}
-            color="teal"
-            floated="right"
-            content="Checkout"
-          />
-        </StripeCheckout>
-      </Segment>
-    </>
+    <Grid stackable>
+      <Grid.Row columns={2}>
+        <Grid.Column>
+          <strong>Sub total:</strong> ${cartAmount}
+        </Grid.Column>
+        <Grid.Column>
+          <StripeCheckout
+            name="React Reserve"
+            amount={stripeAmount}
+            image={products.length > 0 ? products[0].product.mediaUrl : ""}
+            currency="USD"
+            shippingAddress={true}
+            billingAddress={true}
+            zipCode={true}
+            stripeKey="pk_test_t7RpkuOEdeYcNPrzs362Xe6Y00MxwtXekY"
+            token={handleCheckout}
+            triggerEvent="onClick"
+          >
+            <Button
+              icon="cart"
+              disabled={isCartEmpty || success}
+              color="green"
+              floated="right"
+              content="Checkout"
+            />
+          </StripeCheckout>
+        </Grid.Column>
+      </Grid.Row>
+    </Grid>
   );
 }
 
