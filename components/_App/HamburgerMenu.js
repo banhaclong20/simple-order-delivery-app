@@ -27,6 +27,7 @@ function MobileContainer({ user, children }) {
       <Sidebar
         as={Menu}
         animation="overlay"
+        direction="right"
         inverted
         onHide={handleSidebarHide}
         vertical
@@ -35,6 +36,11 @@ function MobileContainer({ user, children }) {
         className="hamburger-menu"
       >
         <Menu.Menu>
+          <Menu.Item as="a" onClick={handleSidebarHide}>
+            <Icon name="window close outline" color="red" />
+            Mr. Banh Mi
+          </Menu.Item>
+
           <MenuItem handleToggle={handleSidebarHide} />
           {user ? (
             <>
@@ -84,15 +90,9 @@ function MobileContainer({ user, children }) {
 
       <Sidebar.Pusher>
         <Segment textAlign="center" vertical>
-          {sidebarOpened ? (
-            <Menu.Item onClick={() => setSidebarOpen(false)}>
-              <Icon name="window close outline" size="large" />
-            </Menu.Item>
-          ) : (
-            <Menu.Item onClick={handleToggle}>
-              <Icon name="sidebar" size="large" />
-            </Menu.Item>
-          )}
+          <Menu.Item onClick={handleToggle}>
+            <Icon name="sidebar" size="large" />
+          </Menu.Item>
         </Segment>
 
         {children}

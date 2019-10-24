@@ -11,6 +11,6 @@ export const bannerContent = {
   account: {
     header: "My account",
     description: "Welcome back!",
-    customBgFile: "general-bg.jpg"
+    customBgFile: "general-bg.jpeg"
   }
 };

@@ -19,7 +19,7 @@ function StartOrder() {
               centered
               header="Delivery"
               image="../static/assets/uber-eat.png"
-              className="start-order-card delivery-card"
+              className="start-order-card delivery-card with-border"
             />
           </Grid.Column>
           <Grid.Column>
@@ -28,7 +28,7 @@ function StartOrder() {
               centered
               header="Carryout"
               image="../static/assets/food-carryout.png"
-              className="start-order-card carry-out-card"
+              className="start-order-card carry-out-card with-border"
             />
           </Grid.Column>
         </Grid.Row>
