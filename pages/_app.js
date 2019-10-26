@@ -5,8 +5,6 @@ import axios from "axios";
 import Router from "next/router";
 import { parseCookies, destroyCookie } from "nookies";
 
-import { Transition, animated } from "react-spring/renderprops.cjs";
-
 import { initStore } from "../redux/store";
 import { redirectUser } from "../utils/auth";
 import baseUrl from "../utils/baseUrl";
@@ -69,35 +67,12 @@ export default withRedux(initStore, { debug: true })(
     };
 
     render() {
-      const { pageProps, store } = this.props;
-
-      const transitionItems = [
-        {
-          id: this.props.router.route,
-          Component: this.props.Component,
-          pageProps: this.props.pageProps
-        }
-      ];
+      const { Component, pageProps, store } = this.props;
 
       return (
         <Provider store={store}>
           <Layout {...pageProps}>
-            <Transition
-              native
-              unique
-              items={transitionItems}
-              keys={transitionItems => transitionItems.id}
-              from={{ opacity: 0 }}
-              enter={{ opacity: 1 }}
-              leave={{ opacity: 0 }}
-              config={{ duration: 300 }}
-            >
-              {({ Component, pageProps }) => styles => (
-                <animated.div style={styles}>
-                  <Component {...pageProps} />
-                </animated.div>
-              )}
-            </Transition>
+            <Component {...pageProps} />
           </Layout>
         </Provider>
       );
