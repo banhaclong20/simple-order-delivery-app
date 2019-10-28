@@ -4,6 +4,7 @@ import withRedux from "next-redux-wrapper";
 import axios from "axios";
 import Router from "next/router";
 import { parseCookies, destroyCookie } from "nookies";
+import NProgress from "nprogress";
 
 import { initStore } from "../redux/store";
 import { redirectUser } from "../utils/auth";
@@ -11,6 +12,13 @@ import baseUrl from "../utils/baseUrl";
 import Layout from "../components/_App/Layout";
 import "semantic-ui-css/semantic.min.css";
 import "./main.css";
+
+Router.events.on("routeChangeStart", url => {
+  console.log(`Loading: ${url}`);
+  NProgress.start();
+});
+Router.events.on("routeChangeComplete", () => NProgress.done());
+Router.events.on("routeChangeError", () => NProgress.done());
 
 export default withRedux(initStore, { debug: true })(
   class MyApp extends App {
