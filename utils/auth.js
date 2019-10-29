@@ -1,10 +1,17 @@
 import cookie from "js-cookie";
 import Router from "next/router";
-import actions from "../redux/actions";
 
 export function handleLogin(token) {
   cookie.set("token", token);
   Router.push("/");
+}
+
+export function handleSetLocalStorage(key, data) {
+  window.localStorage.setItem(key, data);
+}
+
+export function handleRemoveLocalStorage(key) {
+  window.localStorage.removeItem(key);
 }
 
 export function redirectUser(ctx, location) {
@@ -18,6 +25,7 @@ export function redirectUser(ctx, location) {
 
 export function handleLogout() {
   cookie.remove("token");
+  handleRemoveLocalStorage("user");
   window.localStorage.setItem("logout", Date.now());
   Router.push("/login");
 }

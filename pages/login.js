@@ -11,6 +11,7 @@ import {
 } from "semantic-ui-react";
 import Link from "next/link";
 import axios from "axios";
+
 import AuthActions from "../redux/actions/authActions";
 import catchErrors from "../utils/catchErrors";
 import baseUrl from "../utils/baseUrl";
@@ -39,7 +40,7 @@ function SignIn(props) {
   }
 
   async function handleSubmit(event) {
-    const { reauthenticate } = props;
+    const { reauthenticate, getUser } = props;
     event.preventDefault();
 
     try {
@@ -48,8 +49,9 @@ function SignIn(props) {
       const url = `${baseUrl}/api/login`;
       const payload = { ...user };
       const response = await axios.post(url, payload);
-      handleLogin(response.data);
+      await handleLogin(response.data);
       reauthenticate(response.data);
+      getUser(response.data);
     } catch (error) {
       catchErrors(error, setError);
     } finally {
@@ -127,11 +129,16 @@ function SignIn(props) {
   );
 }
 
+const mapStateToProps = state => ({
+  token: state.authentication.token
+});
+
 const mapDispatchToProps = {
-  reauthenticate: AuthActions.reauthenticate
+  reauthenticate: AuthActions.reauthenticate,
+  getUser: AuthActions.getUser
 };
 
 export default connect(
-  state => state,
+  mapStateToProps,
   mapDispatchToProps
 )(SignIn);

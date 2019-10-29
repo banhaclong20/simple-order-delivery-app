@@ -8,6 +8,9 @@ function Layout({ children, user }) {
     <>
       <Head>
         <HeadContent />
+        <title>
+          Mr. Banh Mi - Delivery and Carryout for Vietnamese Sandwiches
+        </title>
       </Head>
       <Header user={user} />
       <div style={{ minHeight: "70vh" }}>{children}</div>

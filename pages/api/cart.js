@@ -28,6 +28,7 @@ async function handleGetRequest(req, res) {
   if (!("authorization" in req.headers)) {
     return res.status(401).send("No authorization token");
   }
+
   try {
     const { userId } = jwt.verify(
       req.headers.authorization,
@@ -37,6 +38,11 @@ async function handleGetRequest(req, res) {
       path: "products.product",
       model: "Product"
     });
+
+    if (!cart) {
+      res.status(200).send([]);
+    }
+
     res.status(200).json(cart.products);
   } catch (error) {
     console.error(error);

@@ -2,6 +2,7 @@ import Router from "next/router";
 import axios from "axios";
 import { AUTHENTICATE, DEAUTHENTICATE, USER } from "../types/authType";
 import baseUrl from "../../utils/baseUrl";
+import { handleSetLocalStorage } from "../../utils/auth";
 import { setCookie, removeCookie } from "../../utils/auth";
 
 // gets token from the api and stores it in the redux store and in cookie
@@ -43,53 +44,30 @@ const authenticate = ({ email_id, password }, type) => {
 };
 
 // gets the token from the cookie and saves it in the store
-const reauthenticate = token => {
-  return dispatch => {
-    dispatch({ type: AUTHENTICATE, payload: token });
-  };
+const reauthenticate = token => dispatch => {
+  dispatch({ type: AUTHENTICATE, payload: token });
 };
 
 // removing the token
-const deauthenticate = () => {
-  return dispatch => {
-    removeCookie("token");
-    Router.push("/");
-    dispatch({ type: DEAUTHENTICATE });
-  };
+const deauthenticate = () => dispatch => {
+  removeCookie("token");
+  Router.push("/");
+  dispatch({ type: DEAUTHENTICATE });
 };
 
-const getUser = ({ token }, type) => {
-  console.log(token);
-  return dispatch => {
-    axios
-      .get(`${API}/${type}`, {
-        headers: {
-          Authorization: "bearer " + token
-        }
-      })
-      .then(response => {
-        dispatch({ type: USER, payload: response.data.data.user });
-      })
-      .catch(error => {
-        switch (error.response.status) {
-          case 401:
-            Router.push("/");
-            break;
-          case 422:
-            alert(error.response.data.meta.message);
-            break;
-          case 500:
-            alert("Interval server error! Try again!");
-          case 503:
-            alert(error.response.data.meta.message);
-            Router.push("/");
-            break;
-          default:
-            alert(error.response.data.meta.message);
-            break;
-        }
-      });
-  };
+const setCurrentUser = currentUser => ({
+  type: USER,
+  payload: currentUser
+});
+
+const getUser = token => async dispatch => {
+  const payload = { headers: { Authorization: token } };
+  const url = `${baseUrl}/api/account`;
+  const response = await axios.get(url, payload);
+  const user = response.data;
+
+  dispatch(setCurrentUser(user));
+  handleSetLocalStorage("user", JSON.stringify(user));
 };
 
 export default {
