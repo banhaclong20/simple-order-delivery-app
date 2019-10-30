@@ -23,7 +23,7 @@ export const initStore = (initialState, { isServer }) => {
 
     const persistConfig = {
       key: "nextjs",
-      whitelist: ["authentication"],
+      whitelist: ["authentication", "order"],
       storage
     };
 

@@ -4,18 +4,20 @@ import {
   Button,
   Segment,
   Icon,
-  Label
+  Label,
+  Header as MenuHeader
 } from "semantic-ui-react";
 import { connect } from "react-redux";
 import Link from "next/link";
-import { useRouter } from "next/router";
+import Router, { useRouter } from "next/router";
 import AuthActions from "../../redux/actions/authActions";
+import OrderActions from "../../redux/actions/orderActions";
 import { handleLogout } from "../../utils/auth";
 import MobileContainer from "./HamburgerMenu";
 
 import "./Layout.css";
 
-function Header({ logOut, user }) {
+function Header({ logOut, user, orderType, selectedAddress, resetOrder }) {
   const router = useRouter();
   let orderCount = 0;
 
@@ -26,6 +28,11 @@ function Header({ logOut, user }) {
   function handleLogoutAuth() {
     handleLogout();
     logOut();
+  }
+
+  function handleChangeOrder() {
+    resetOrder();
+    Router.push("/start-order");
   }
 
   return (
@@ -49,6 +56,21 @@ function Header({ logOut, user }) {
         <Segment.Group className="segment-menu">
           <div style={{ padding: "1em 0" }} className="desktop-menu">
             <Menu.Menu position="right">
+              {orderType != undefined && selectedAddress ? (
+                <Segment basic className="info-order-header">
+                  <MenuHeader as="h4">{orderType}</MenuHeader>
+                  <p>
+                    <span>
+                      <Icon name="map marker alternate" />
+                    </span>{" "}
+                    9370 Warren Parkway
+                  </p>
+                  <p className="button-change" onClick={handleChangeOrder}>
+                    Change
+                  </p>
+                </Segment>
+              ) : null}
+
               <Link href="/">
                 <Menu.Item header active={isActive("/")}>
                   Home
@@ -114,11 +136,14 @@ function Header({ logOut, user }) {
 
 const mapStateToProps = state => ({
   token: state.authentication.token,
-  user: state.authentication.user
+  user: state.authentication.user,
+  orderType: state.order.orderType,
+  selectedAddress: state.order.selectedAddress
 });
 
 const mapDispatchToProps = {
-  logOut: AuthActions.logOut
+  logOut: AuthActions.logOut,
+  resetOrder: OrderActions.resetOrder
 };
 
 export default connect(

@@ -51,6 +51,35 @@
   font-weight: bold;
 }
 
+.info-order-header {
+  padding: 0 !important;
+  margin: 0 !important;
+  text-align: center !important;
+  border-right: 2px solid #b5b5b5 !important;
+  padding-right: 2em !important;
+  margin-right: 10px !important;
+  margin-top: -8px !important;
+}
+
+.info-order-header h4 {
+  color: #4eac31 !important;
+  text-transform: uppercase !important;
+  margin: 0 0 10px !important;
+}
+
+.info-order-header p {
+  margin: 0;
+  padding: 0;
+  line-height: 0;
+  margin-bottom: 3px;
+}
+
+.info-order-header .button-change {
+  color: #666666;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
 /* 404 page */
 
 #notfound {

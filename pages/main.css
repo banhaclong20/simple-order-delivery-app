@@ -1,4 +1,4 @@
-.mrbanhmi-logo{
+.mrbanhmi-logo {
   width: 120px !important;
   margin-top: 20px !important;
   z-index: 2 !important;
@@ -57,6 +57,11 @@ h2.ui.header .sub.header {
   transition: all 0.3s ease-in-out !important;
 }
 
+.start-order-card.selected,
+.start-order-card.selected:hover {
+  border: 2px solid green !important;
+}
+
 .start-order-card .image {
   padding: 1em !important;
   text-align: center !important;
@@ -72,8 +77,9 @@ h2.ui.header .sub.header {
   transition: all 0.3s ease-in-out !important;
 }
 
-.start-order-card:hover .content .header {
-  color: #21ba45 !important;
+.start-order-card:hover .content .header,
+.start-order-card.selected .content .header {
+  color: #036b1b !important;
 }
 
 .carry-out-card .image img {

@@ -112,7 +112,7 @@ const HomepageLayout = () => (
                     carrots, and cilantro in a toasted baguette.
                   </Card.Description>
                 </Card.Content>
-                <Card.Content>$7.75</Card.Content>
+                <Card.Content>$4.25</Card.Content>
               </Card>
             </Grid.Column>
             <Grid.Column>
@@ -130,7 +130,7 @@ const HomepageLayout = () => (
                     pickled carrots, and cilantro
                   </Card.Description>
                 </Card.Content>
-                <Card.Content>$6.75</Card.Content>
+                <Card.Content>$4.25</Card.Content>
               </Card>
             </Grid.Column>
           </Grid.Row>
