@@ -77,7 +77,7 @@ const HomepageLayout = () => (
         <Header
           textAlign="center"
           as="h1"
-          content="Most polular"
+          content="Most popular"
           subheader="Most of the customers are choosing these items"
           style={{ marginBottom: 50 }}
         />
