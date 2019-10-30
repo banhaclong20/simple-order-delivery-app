@@ -1,6 +1,11 @@
 import Router from "next/router";
 import axios from "axios";
-import { AUTHENTICATE, DEAUTHENTICATE, USER } from "../types/authType";
+import {
+  AUTHENTICATE,
+  DEAUTHENTICATE,
+  USER,
+  AUTH_LOGOUT
+} from "../types/authType";
 import baseUrl from "../../utils/baseUrl";
 import { handleSetLocalStorage } from "../../utils/auth";
 import { setCookie, removeCookie } from "../../utils/auth";
@@ -70,9 +75,14 @@ const getUser = token => async dispatch => {
   handleSetLocalStorage("user", JSON.stringify(user));
 };
 
+const logOut = () => ({
+  type: AUTH_LOGOUT
+});
+
 export default {
   authenticate,
   reauthenticate,
   deauthenticate,
-  getUser
+  getUser,
+  logOut
 };

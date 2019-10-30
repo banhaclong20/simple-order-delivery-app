@@ -4,6 +4,7 @@ import AccountPermissions from "../components/Account/AccountPermissions";
 import { parseCookies } from "nookies";
 import baseUrl from "../utils/baseUrl";
 import axios from "axios";
+import { connect } from "react-redux";
 import ContainerLayout from "../components/_App/ContainerLayout";
 import { bannerContent } from "../utils/staticContent";
 
@@ -18,7 +19,7 @@ function Account({ user, orders }) {
     >
       <AccountHeader {...user} />
       <AccountOrders orders={orders} />
-      {user.role === "root" && <AccountPermissions />}
+      {user && user.role === "root" && <AccountPermissions />}
     </ContainerLayout>
   );
 }
@@ -34,4 +35,8 @@ Account.getInitialProps = async ctx => {
   return response.data;
 };
 
-export default Account;
+const mapStateToProps = state => ({
+  user: state.authentication.user
+});
+
+export default connect(mapStateToProps)(Account);

@@ -66,8 +66,6 @@ function getCookieFromServer(key, req) {
     .split(";")
     .find(c => c.trim().startsWith(`${key}=`));
 
-  console.log("getCookieValue", getCookieValue);
-
   if (!getCookieValue) {
     return undefined;
   }

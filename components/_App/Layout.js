@@ -3,7 +3,7 @@ import Header from "./Header";
 import HeadContent from "./HeadContent";
 import Footer from "./Footer";
 
-function Layout({ children, user }) {
+function Layout({ children }) {
   return (
     <>
       <Head>
@@ -12,7 +12,7 @@ function Layout({ children, user }) {
           Mr. Banh Mi - Delivery and Carryout for Vietnamese Sandwiches
         </title>
       </Head>
-      <Header user={user} />
+      <Header />
       <div style={{ minHeight: "70vh" }}>{children}</div>
       <Footer />
     </>

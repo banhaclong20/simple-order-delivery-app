@@ -1,4 +1,9 @@
-import { AUTHENTICATE, DEAUTHENTICATE, USER } from "../types/authType";
+import {
+  AUTHENTICATE,
+  DEAUTHENTICATE,
+  USER,
+  AUTH_LOGOUT
+} from "../types/authType";
 
 const initialState = {
   token: null,
@@ -19,6 +24,8 @@ export default (state = initialState, action) => {
       };
     case DEAUTHENTICATE:
       return { token: null };
+    case AUTH_LOGOUT:
+      return initialState;
     default:
       return state;
   }

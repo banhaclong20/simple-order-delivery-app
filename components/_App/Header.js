@@ -6,19 +6,26 @@ import {
   Icon,
   Label
 } from "semantic-ui-react";
+import { connect } from "react-redux";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import AuthActions from "../../redux/actions/authActions";
 import { handleLogout } from "../../utils/auth";
 import MobileContainer from "./HamburgerMenu";
 
 import "./Layout.css";
 
-function Header({ user }) {
+function Header({ logOut, user }) {
   const router = useRouter();
   let orderCount = 0;
 
   function isActive(route) {
     return route === router.pathname;
+  }
+
+  function handleLogoutAuth() {
+    handleLogout();
+    logOut();
   }
 
   return (
@@ -58,7 +65,7 @@ function Header({ user }) {
                 <>
                   <Menu.Item
                     header
-                    onClick={handleLogout}
+                    onClick={handleLogoutAuth}
                     style={{ marginRight: 15 }}
                   >
                     Logout
@@ -105,4 +112,16 @@ function Header({ user }) {
   );
 }
 
-export default Header;
+const mapStateToProps = state => ({
+  token: state.authentication.token,
+  user: state.authentication.user
+});
+
+const mapDispatchToProps = {
+  logOut: AuthActions.logOut
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Header);

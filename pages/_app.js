@@ -1,6 +1,7 @@
 import App from "next/app";
 import { Provider } from "react-redux";
 import withRedux from "next-redux-wrapper";
+
 import axios from "axios";
 import Router from "next/router";
 import { parseCookies, destroyCookie } from "nookies";
@@ -37,7 +38,7 @@ export default withRedux(initStore, { debug: true })(
         if (isProtectedRoute) {
           redirectUser(ctx, "/login");
         }
-      } else {
+      } else if (!pageProps && pageProps.user && pageProps.user.email) {
         try {
           const payload = { headers: { Authorization: token } };
           const url = `${baseUrl}/api/account`;
@@ -76,6 +77,8 @@ export default withRedux(initStore, { debug: true })(
 
     render() {
       const { Component, pageProps, store } = this.props;
+
+      console.log("pageProps", pageProps);
 
       return (
         <Provider store={store}>
