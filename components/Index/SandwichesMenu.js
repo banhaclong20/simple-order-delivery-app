@@ -8,7 +8,6 @@ import {
   Icon
 } from "semantic-ui-react";
 import truncateString from "../../utils/truncateStr";
-import "./style.css";
 
 function SandwichesMenu({ sandwiches }) {
   return (

@@ -1,5 +1,4 @@
 import { Card, Label, Message, Divider, Header, Icon } from "semantic-ui-react";
-import "./style.css";
 
 function SmoothiesMenu({ drinks }) {
   return (
