@@ -79,6 +79,14 @@ h2.ui.header .sub.header {
 
 .start-order-card .image img {
   width: 100% !important;
+  height: 78.77px !important;
+}
+
+@media only screen and (min-width: 576px) {
+  .start-order-card .image img {
+    width: 100% !important;
+    height: auto !important;
+  }
 }
 
 .start-order-card:hover .content .header,
