@@ -14,7 +14,6 @@ function Account({ user, orders }) {
       banner
       content
       bannerContent={bannerContent.account}
-      inverted
       size="180px"
     >
       <AccountHeader {...user} />

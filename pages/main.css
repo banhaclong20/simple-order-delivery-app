@@ -81,8 +81,3 @@ h2.ui.header .sub.header {
 .start-order-card.selected .content .header {
   color: #036b1b !important;
 }
-
-.carry-out-card .image img {
-  width: 140px !important;
-  max-height: 140px !important;
-}

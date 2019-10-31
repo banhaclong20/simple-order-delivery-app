@@ -38,7 +38,7 @@ function StartOrder({
       size="150px"
       text
     >
-      <Grid stackable>
+      <Grid>
         <Grid.Row columns={2}>
           <Grid.Column>
             <Card
