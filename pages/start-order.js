@@ -1,3 +1,4 @@
+import React from "react";
 import { connect } from "react-redux";
 import OrderActions from "../redux/actions/orderActions";
 import ContainerLayout from "../components/_App/ContainerLayout";
@@ -8,7 +9,9 @@ import {
   Divider,
   Segment,
   Header,
-  Radio
+  Radio,
+  Modal,
+  Icon
 } from "semantic-ui-react";
 import Router from "next/router";
 import { bannerContent } from "../utils/staticContent";
@@ -20,6 +23,8 @@ function StartOrder({
   setOrderType,
   setSelectedAddress
 }) {
+  const [showModalDelivery, setShowModalDelivery] = React.useState(false);
+
   function setOrder(type) {
     setOrderType(type);
     setStartOrder(true);
@@ -28,6 +33,16 @@ function StartOrder({
   function handleOrderCarryout() {
     setSelectedAddress(true);
     Router.push("/menu");
+  }
+
+  function openDeliveryModal() {
+    setOrder("delivery");
+    setShowModalDelivery(true);
+  }
+
+  function handleConfirmBtn() {
+    setShowModalDelivery(false);
+    window.open("https://www.ubereats.com/en-US/", "_blank");
   }
 
   return (
@@ -41,17 +56,36 @@ function StartOrder({
       <Grid>
         <Grid.Row columns={2}>
           <Grid.Column>
-            <Card
-              centered
-              header="Delivery"
-              image="../static/assets/uber-eat.png"
-              className={`${
-                orderType === "delivery"
-                  ? "start-order-card delivery-card selected"
-                  : "start-order-card delivery-card with-border"
-              }`}
-              onClick={() => setOrder("delivery")}
-            />
+            <Modal
+              trigger={
+                <Card
+                  header="Delivery"
+                  image="../static/assets/uber-eat.png"
+                  className={`${
+                    orderType === "delivery"
+                      ? "start-order-card delivery-card selected"
+                      : "start-order-card delivery-card with-border"
+                  }`}
+                  onClick={openDeliveryModal}
+                />
+              }
+              closeIcon
+              open={showModalDelivery}
+              onClose={() => setShowModalDelivery(false)}
+            >
+              <Header icon="exclamation circle" content="Uber Eats Delivery" />
+              <Modal.Content>
+                <h4>
+                  Please click on Confirm button below to go to Mr Banh Mi at
+                  Uber Eats website.
+                </h4>
+              </Modal.Content>
+              <Modal.Actions>
+                <Button color="green" onClick={handleConfirmBtn}>
+                  <Icon name="checkmark" /> Confirm
+                </Button>
+              </Modal.Actions>
+            </Modal>
           </Grid.Column>
           <Grid.Column>
             <Card

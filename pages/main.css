@@ -79,7 +79,6 @@ h2.ui.header .sub.header {
 
 .start-order-card .image img {
   width: 100% !important;
-  height: auto !important;
 }
 
 .start-order-card:hover .content .header,
@@ -129,4 +128,18 @@ h2.ui.header .sub.header {
 .menu-info .content {
   background: rgba(0,0,0, 0.7) !important;
   padding: 2em !important;
+}
+
+.ui.modal {
+  top: 20%;
+  left: auto;
+}
+
+.ui.modal > .close {
+  top: 5px;
+  right: 5px;
+}
+
+.ui.modal > .close::before {
+  content: url('../static/assets/close.png');
 }
