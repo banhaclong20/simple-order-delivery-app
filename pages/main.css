@@ -77,6 +77,11 @@ h2.ui.header .sub.header {
   transition: all 0.3s ease-in-out !important;
 }
 
+.start-order-card .image img {
+  width: 100% !important;
+  height: auto !important;
+}
+
 .start-order-card:hover .content .header,
 .start-order-card.selected .content .header {
   color: #036b1b !important;
