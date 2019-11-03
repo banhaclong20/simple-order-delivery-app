@@ -70,6 +70,7 @@ function StartOrder({
                 />
               }
               closeIcon
+              size="small"
               open={showModalDelivery}
               onClose={() => setShowModalDelivery(false)}
             >

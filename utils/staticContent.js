@@ -14,3 +14,10 @@ export const bannerContent = {
     customBgFile: "menu-bg.jpg"
   }
 };
+
+export const extraItems = [
+  {
+    name: "Add Extra Fried Egg",
+    price: 1
+  }
+];

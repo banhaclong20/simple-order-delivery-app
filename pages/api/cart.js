@@ -34,15 +34,11 @@ async function handleGetRequest(req, res) {
       req.headers.authorization,
       process.env.JWT_SECRET
     );
+
     const cart = await Cart.findOne({ user: userId }).populate({
       path: "products.product",
       model: "Product"
     });
-
-    if (!cart) {
-      res.status(200).send([]);
-    }
-
     res.status(200).json(cart.products);
   } catch (error) {
     console.error(error);
@@ -52,38 +48,42 @@ async function handleGetRequest(req, res) {
 
 async function handlePutRequest(req, res) {
   const { quantity, productId } = req.body;
+
   if (!("authorization" in req.headers)) {
     return res.status(401).send("No authorization token");
-  }
-  try {
-    const { userId } = jwt.verify(
-      req.headers.authorization,
-      process.env.JWT_SECRET
-    );
-    // Get user cart based on userId
-    const cart = await Cart.findOne({ user: userId });
-    // Check if product already exists in cart
-    const productExists = cart.products.some(doc =>
-      ObjectId(productId).equals(doc.product)
-    );
-    // If so, increment quantity (by number provided to request)
-    if (productExists) {
-      await Cart.findOneAndUpdate(
-        { _id: cart._id, "products.product": productId },
-        { $inc: { "products.$.quantity": quantity } }
+  } else {
+    try {
+      const { userId } = jwt.verify(
+        req.headers.authorization,
+        process.env.JWT_SECRET
       );
-    } else {
-      // If not, add new product with given quantity
-      const newProduct = { quantity, product: productId };
-      await Cart.findOneAndUpdate(
-        { _id: cart._id },
-        { $addToSet: { products: newProduct } }
+
+      // Get user cart based on userId
+      const cart = await Cart.findOne({ user: userId });
+      // Check if product already exists in cart
+      const productExists = cart.products.some(doc =>
+        ObjectId(productId).equals(doc.product)
       );
+
+      // If so, increment quantity (by number provided to request)
+      if (productExists) {
+        await Cart.findOneAndUpdate(
+          { _id: cart._id, "products.product": productId },
+          { $inc: { "products.$.quantity": quantity } }
+        );
+      } else {
+        // If not, add new product with given quantity
+        const newProduct = { quantity, product: productId };
+        await Cart.findOneAndUpdate(
+          { _id: cart._id },
+          { $addToSet: { products: newProduct } }
+        );
+      }
+      res.status(200).send("Cart updated");
+    } catch (error) {
+      console.error(error);
+      res.status(403).send("Something wrong!");
     }
-    res.status(200).send("Cart updated");
-  } catch (error) {
-    console.error(error);
-    res.status(403).send("Please login again");
   }
 }
 

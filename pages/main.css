@@ -96,6 +96,10 @@ h2.ui.header .sub.header {
 
 /* Menu */
 
+a.ui.card > .menu-card-content .menu-card-content-info .header {
+  color: #303030;
+}
+
 .menu-card-content {
   display: flex;
   flex-direction: row;
@@ -150,4 +154,61 @@ h2.ui.header .sub.header {
 
 .ui.modal > .close::before {
   content: url('../static/assets/close.png');
+}
+
+.orderItemModal {
+  padding-bottom: 1em;
+}
+
+.orderItemModal > .header {
+  font-family: 'Montserrat', serif !important;
+  font-size: 1.3rem !important;
+  font-weight: 500 !important; 
+  margin-right: 10px !important;
+}
+
+.orderItemModal > .ui.header .sub.header {
+  margin-top: 10px !important;
+  font-size: 0.95rem !important;
+}
+
+.orderItemModal .content .ui.checkbox {
+  margin: 0 10px 10px 0 !important;
+}
+
+.orderItemModal .ui.action.input:not([class*="left action"])>input {
+  width: 70px;
+  margin-right: 10px;
+  border-right: 1px solid #dededf !important;
+  border-left: 1px solid #dededf !important;
+}
+
+.orderItemModal .order-actions {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.orderItemModal > .order-actions > .quanlity-input .label {
+  display: none !important;
+}
+
+.orderItemModal .price-modal .label{
+  color: rgb(45, 45, 45);
+  height: 38px;
+  line-height: 1.5;
+}
+
+@media only screen and (min-width: 768px) {
+  .orderItemModal {
+    padding-bottom: 0;
+  }
+
+  .orderItemModal > .order-actions > .quanlity-input .label {
+    display: inline-block !important;
+  }
+
+  .orderItemModal .ui.action.input:not([class*="left action"])>input {
+    border-right: 1px solid #dededf !important;
+  }
 }
