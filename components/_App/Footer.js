@@ -9,6 +9,7 @@ import {
   Image,
   Icon
 } from "semantic-ui-react";
+import Link from "next/link";
 
 export default () => (
   <Segment
@@ -28,7 +29,9 @@ export default () => (
         <Grid.Column width={3}>
           <Header inverted as="h4" content="Customer Service" />
           <List link inverted>
-            <List.Item as="a">Contact Us</List.Item>
+            <Link href="contact-us">
+              <List.Item as="a">Contact Us</List.Item>
+            </Link>
             <List.Item as="a">FAQs</List.Item>
           </List>
         </Grid.Column>
@@ -53,7 +56,7 @@ export default () => (
               {" "}
               <Icon name="call" />
             </span>{" "}
-            (469) 556-7964
+            (972) 292-9798
           </p>
         </Grid.Column>
       </Grid>

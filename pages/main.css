@@ -212,3 +212,17 @@ a.ui.card > .menu-card-content .menu-card-content-info .header {
     border-right: 1px solid #dededf !important;
   }
 }
+
+
+/* General */
+
+.boldText {
+  font-family: 'Montserrat', serif !important;
+  font-weight: 600;
+  color: #4d4d4d;
+}
+
+.custom-link {
+  text-decoration: underline;
+  color: green;
+}

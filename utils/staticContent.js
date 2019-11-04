@@ -12,6 +12,11 @@ export const bannerContent = {
     header: "My account",
     description: "Welcome back!",
     customBgFile: "menu-bg.jpg"
+  },
+  contactUs: {
+    header: "Contact Us",
+    description: "Looking for more information? Email Us",
+    customBgFile: "header-bg.jpg"
   }
 };
 
