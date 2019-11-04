@@ -22,25 +22,34 @@ export default () => (
         <Grid.Column width={3}>
           <Header inverted as="h4" content="Menu" />
           <List link inverted>
-            <List.Item as="a">Vietnamese Sandwiches</List.Item>
-            <List.Item as="a">Smoothies / Drinks</List.Item>
+            <Link href="/menu">
+              <List.Item as="a">Vietnamese Sandwiches</List.Item>
+            </Link>
+
+            <Link href="/menu">
+              <List.Item as="a">Smoothies / Drinks</List.Item>
+            </Link>
           </List>
         </Grid.Column>
         <Grid.Column width={3}>
-          <Header inverted as="h4" content="Customer Service" />
+          <Header inverted as="h4" content="Information" />
           <List link inverted>
-            <Link href="contact-us">
+            <List.Item as="a">About Us</List.Item>
+            <Link href="/contact-us">
               <List.Item as="a">Contact Us</List.Item>
             </Link>
             <List.Item as="a">FAQs</List.Item>
           </List>
         </Grid.Column>
         <Grid.Column width={3}>
-          <Header inverted as="h4" content="Others" />
+          <Header inverted as="h4" content="Account" />
           <List link inverted>
-            <List.Item as="a">Our Story</List.Item>
-            <List.Item as="a">Sign In</List.Item>
-            <List.Item as="a">Create Account</List.Item>
+            <Link href="/login">
+              <List.Item as="a">Sign In</List.Item>
+            </Link>
+            <Link href="/signup">
+              <List.Item as="a">Create Account</List.Item>
+            </Link>
           </List>
         </Grid.Column>
         <Grid.Column width={7}>
