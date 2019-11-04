@@ -15,7 +15,12 @@ export const bannerContent = {
   },
   contactUs: {
     header: "Contact Us",
-    description: "Looking for more information? Email Us",
+    description: "Looking for more information?",
+    customBgFile: "header-bg.jpg"
+  },
+  aboutUs: {
+    header: "About Us",
+    description: "More information about Mr Banh Mi",
     customBgFile: "header-bg.jpg"
   }
 };

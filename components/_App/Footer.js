@@ -34,7 +34,9 @@ export default () => (
         <Grid.Column width={3}>
           <Header inverted as="h4" content="Information" />
           <List link inverted>
-            <List.Item as="a">About Us</List.Item>
+            <Link href="/about-us">
+              <List.Item as="a">About Us</List.Item>
+            </Link>
             <Link href="/contact-us">
               <List.Item as="a">Contact Us</List.Item>
             </Link>
