@@ -38,7 +38,7 @@ export default withRedux(initStore, { debug: true })(
         if (isProtectedRoute) {
           redirectUser(ctx, "/login");
         }
-      } else if (!pageProps && pageProps.user && pageProps.user.email) {
+      } else {
         try {
           const payload = { headers: { Authorization: token } };
           const url = `${baseUrl}/api/account`;
